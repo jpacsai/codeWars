@@ -17,5 +17,14 @@ Example
 */
 
 function duplicateCount(text){
-    //...
-  }
+    var str = text.toString().toLowerCase().split("").sort();
+    var rep = [];
+    for (i = 0 ; i < str.length; i++) {
+      if (str[i] == str[i+1]) {
+        if (rep.includes(str[i]) === false) {
+            rep = rep.concat(str[i]);
+        }
+      }
+    }
+    return rep.length;
+}
