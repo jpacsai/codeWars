@@ -1,3 +1,5 @@
+// The highest profit wins!
+
 /*
 Story
 Ben has a very simple idea to make some profit: he buys something and sells it again. 

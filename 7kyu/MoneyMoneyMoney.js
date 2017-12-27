@@ -1,3 +1,5 @@
+// Money, Money, Money
+
 /*
 Thus Mr. Scrooge has to wait for 3 years for the initial pricipal to ammount to the desired sum.
 

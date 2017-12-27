@@ -1,3 +1,5 @@
+// Categorize New Member
+
 /*
 The Western Suburbs Croquet Club has two categories of membership, Senior and Open. 
 They would like your help with an application form that will tell prospective members 

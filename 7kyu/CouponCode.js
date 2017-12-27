@@ -1,3 +1,5 @@
+// The Coupon Code
+
 /*
 Your online store likes to give out coupons for special occasions. 
 Some customers try to cheat the system by entering invalid codes or using expired coupons.
