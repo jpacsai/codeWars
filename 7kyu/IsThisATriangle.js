@@ -11,7 +11,7 @@ function isTriangle(a,b,c) {
   if ((a + c > b) && ( b + a > c) && ( c + b > a) && (a+b+c > 0)) {
    return true;
    } 
-   else {
+  else {
    return false;
    }
 }
