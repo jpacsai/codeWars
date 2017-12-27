@@ -1,3 +1,5 @@
+// Counting Duplicates
+
 /*
 Count the number of Duplicates
 Write a function that will return the count of distinct case-insensitive alphabetic characters 
