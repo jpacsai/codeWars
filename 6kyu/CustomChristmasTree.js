@@ -24,26 +24,39 @@ For chars = "*@o" and n = 3,the output should be:
 
 */
 
-customChristmasTree("*@o&",5);
-
-function customChristmasTree(decor,height) {
-  
-  // modify elements
-  var pattern = decor.split("");
-  for (var h = 0; h < pattern.length; h++) {
-    pattern[h] = pattern[h]+" ";
+/*
+function customChristmasTree(chars,n){
+  var charPointer = 0
+  var trunkLength = Math.floor(n/3)
+  var trunkString = (" ".repeat(n-1)+"|\n").repeat(trunkLength-1) + " ".repeat(n-1)+ "|"
+  var christmasTree = ""
+  for (i = n; i>0 ; i--){
+    var line = " ".repeat(i-1)+ chars[(charPointer++)%(chars.length)]
+    var j = i
+    while (n-j>0){
+     line += " "+chars[(charPointer++)%(chars.length)]
+     j++
+    }
+    line += "\n"
+    christmasTree += line
   }
+  return christmasTree + trunkString
+}
+*/
+
+function customChristmasTree(chars,n) {
+  
+  var pattern = chars.split(""); // modify elements
   
   // count value of all decoration
   var counter = 0;
-  for (var j = 1; j <= height; j++) {
+  for (var j = 1; j <= n; j++) {
     counter += j;
   }
   
   // count full arrays of decorations and extra single elements
-  var full = Math.floor(counter / decor.length)
-  var extra = ((counter / decor.length)-full) * decor.length;
-  
+  var full = Math.floor(counter / chars.length)
+  var extra = ((counter / chars.length)-full) * chars.length;
   var extraDecor = [];
   for (var k = 0; k < extra; k++) {
     extraDecor.push(pattern[k]);
@@ -54,23 +67,33 @@ function customChristmasTree(decor,height) {
   for (var i = 1; i <= full; i++) {
     patternRow = patternRow.concat(pattern);
   }
-  patternRow = patternRow.concat(extraDecor).join("");
+  patternRow = patternRow.concat(extraDecor);
   
-  //console.log(patternRow);
+  // setting indexes, space counter
+  var ind = 0;
+  var spaceCount = n-1;
   
-  var spaceCount = height-1;  // added space start value - 4
-  var rowLength = spaceCount + 2; // start value where to insert space - 6
-  var newRow = rowLength; // first row break
-  
-  var newSpace = 0; // starting position where to insert spaces
-  
-  for (var y = 1; y < height; y++) {
-    
-    newSpace += rowLength; // new space position increases by row length
-    rowLength ++; // row length increases by 1
-    newRow += rowLength; // new row break position increases by row length
-    spaceCount --; // space value decreases by 1
+  // adding extra spaces
+  for (var l = 0; l < n; l++) {
+    ind += l;
+    patternRow[ind] = " ".repeat(spaceCount) + patternRow[ind];
+    spaceCount--;    
   }
-  console.log(patternRow);
-
+  
+  // convert to string, add line breaks
+  ind = 0;
+  var endPattern = "";
+  for (var y = 0; y < n; y++) {
+    ind += y;
+    var words = patternRow.slice(ind,ind+y+1).join(" ");
+    endPattern = endPattern + words + "\n";
+  }
+  endPattern = endPattern.slice(0,-1); // remove last \n
+  
+  // calculate trunk, add trunk
+  var trunk = Math.floor(n / 3);
+  for (var t = 1; t <= trunk; t++) {
+    endPattern = endPattern + "\n" + (" ".repeat(n-1) + "|");
+  }
+  return endPattern;
 }
