@@ -19,3 +19,12 @@ contain_all_rots(
 
 */
 
+function containAllRots(strng, arr) {
+    for (var x = 0; x < strng.length; x++) {
+        var temp = strng.slice(x,strng.length) + strng.slice(0,x);
+        if (arr.indexOf(temp) == -1) {
+          return false
+        }
+      }
+    return true;  
+}
