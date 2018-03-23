@@ -44,56 +44,18 @@ function customChristmasTree(chars,n){
 }
 */
 
-function customChristmasTree(chars,n) {
-  
-  var pattern = chars.split(""); // modify elements
-  
-  // count value of all decoration
-  var counter = 0;
-  for (var j = 1; j <= n; j++) {
-    counter += j;
+function customChristmasTree(chars,n){
+  let tree = "";
+  let decor = chars.repeat(Math.ceil((n * (n + 1) / 2) / chars.length)) + chars.slice(0, (n * (n + 1) / 2) % chars.length);
+  const trunk = Math.floor((n - 3) / 3 + 1);
+  for (let i = 0; i < (n + trunk); i++) {
+    if (i < n) {
+      tree += (" ").repeat(n - i - 1) + decor.slice(0, i + 1).split("").join(" ") + "\n";
+      decor = decor.slice(i + 1);
+    }
+    else {
+      tree += (" ").repeat(n - 1) + "|" + "\n";
+    }
   }
-  
-  // count full arrays of decorations and extra single elements
-  var full = Math.floor(counter / chars.length)
-  var extra = ((counter / chars.length)-full) * chars.length;
-  var extraDecor = [];
-  for (var k = 0; k < extra; k++) {
-    extraDecor.push(pattern[k]);
-  }
-  
-  // create array of all decoration needed
-  var patternRow = [];
-  for (var i = 1; i <= full; i++) {
-    patternRow = patternRow.concat(pattern);
-  }
-  patternRow = patternRow.concat(extraDecor);
-  
-  // setting indexes, space counter
-  var ind = 0;
-  var spaceCount = n-1;
-  
-  // adding extra spaces
-  for (var l = 0; l < n; l++) {
-    ind += l;
-    patternRow[ind] = " ".repeat(spaceCount) + patternRow[ind];
-    spaceCount--;    
-  }
-  
-  // convert to string, add line breaks
-  ind = 0;
-  var endPattern = "";
-  for (var y = 0; y < n; y++) {
-    ind += y;
-    var words = patternRow.slice(ind,ind+y+1).join(" ");
-    endPattern = endPattern + words + "\n";
-  }
-  endPattern = endPattern.slice(0,-1); // remove last \n
-  
-  // calculate trunk, add trunk
-  var trunk = Math.floor(n / 3);
-  for (var t = 1; t <= trunk; t++) {
-    endPattern = endPattern + "\n" + (" ".repeat(n-1) + "|");
-  }
-  return endPattern;
+  return (" ").repeat(n - 1) + tree.trim();
 }
