@@ -19,3 +19,11 @@ reverseByCenter("secret")  == "retsec" // no center character
 
 */
 
+function reverseByCenter(s){
+    const middleStart = Math.floor(s.length / 2);
+    const middleEnd = Math.ceil(s.length / 2);
+    const first = s.slice(middleEnd);
+    const middle = s.slice(middleStart, middleEnd);
+    const second = s.slice(0, middleStart)
+    return first + middle + second;
+}
