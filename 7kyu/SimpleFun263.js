@@ -22,5 +22,5 @@ For sequence = [1, 3, 4, 3] and fixedElement = 3, the output should be 0.
 
 function evenNumbersBeforeFixed(sequence, fixedElement) {
     let fixIndex = sequence.findIndex(a => a === fixedElement);
-    return (fixIndex === -1) ? -1 : sequence.slice(0,sequence.findIndex(a => a === fixedElement)).filter(b => b % 2 === 0).length;
+    return (fixIndex === -1) ? -1 : sequence.slice(0,sequence.indexOf(fixedElement)).filter(b => b % 2 === 0).length;
 }
