@@ -14,25 +14,33 @@ even if the case of the minor word string is changed.
 */
 
 function titleCase(title, minorWords) {
-  var titleStr = title.split(" ");
-    for (var a = 0; a < titleStr.length; a++) {
-      titleStr[a] = titleStr[a].toLowerCase();
-    }
-  
-  var minorStr = minorWords.split(" ");
-    for (var b = 0; b < minorStr.length; b++) {
-      minorStr[b] = minorStr[b].toLowerCase();
-    }
-  
-  var newStr = titleStr[0].charAt(0).toUpperCase().concat(titleStr[0].slice(1));
-  
-    for (var x = 1 ; x < titleStr.length; x++) {
-      if (minorStr.includes(titleStr[x])) {
-        newStr = newStr.concat(" ",titleStr[x]);
+  if (title === '' || typeof title != "string") {
+    return '';
+  }
+  else if (arguments.length === 1 || minorWords === '' || typeof minorWords != "string") {
+    const finalOne = title.toLowerCase().split(' ').map((word, index) => {
+      let w = word[0].toUpperCase();
+      if (word.length > 1) {
+        w += word.slice(1).toLowerCase();
+      }
+      return w;
+    })
+    return finalOne.join(' ');
+  }
+  else {
+    const minor = minorWords.toLowerCase().split(' ');
+    const finalTwo = title.toLowerCase().split(' ').map((word, index) => {
+      if (index === 0 || minor.includes(word) === false) {
+        let w = word[0].toUpperCase();
+        if (word.length > 1) {
+          w += word.slice(1).toLowerCase();
+        }
+        return w;
       }
       else {
-        newStr = newStr.concat(" ",titleStr[x].charAt(0).toUpperCase().concat(titleStr[x].slice(1)));
+        return word;
       }
-    }
-    return newStr; 
+    })
+    return finalTwo.join(' ');
+  }
 }
