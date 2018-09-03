@@ -1,4 +1,4 @@
-# CodeWars  
+# CodeWars 🔫 
 My completed codeWars kata solutions (JavaScript)
 
 - [8kyu](https://github.com/jpacsai/codeWars/tree/master/8kyu)
