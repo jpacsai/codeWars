@@ -30,7 +30,6 @@ All the test strings would contain valid Morse code, so you may skip checking fo
 */
 
 decodeMorse = function(morseCode){
-    const arr = morseCode.split(' ');
-    const translate = arr.map((x, i, arr) => (x === '' && arr[i + 1] == '') ? ' ' : x !== '' ?  MORSE_CODE[x] : '');
-    return translate.join('').trim();
+    const arr = morseCode.split(/  | /).map(x => x === '' ? ' ' : MORSE_CODE[x]);
+    return arr.join('').trim();
 }
