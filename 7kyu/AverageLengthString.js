@@ -16,10 +16,6 @@ The input array's length > 1
 */
 
 function averageLength(arr) { 
-    var ave =  Math.round((arr.toString().replace(/,/g,"").length)/arr.length);
-    var newArr = [];
-    for (var j = 0; j < arr.length; j++) {
-      newArr = newArr.concat(arr[j].substr(0, 1).repeat(ave));
-    }
-    return newArr;
+    var averageLen =  Math.round((arr.join('').length)/arr.length);
+    return arr.map(elem => arr[j].substr(0, 1).repeat(averageLen));
 }
