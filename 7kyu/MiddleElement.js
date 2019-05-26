@@ -14,5 +14,5 @@ gimme([2, 3, 1]) => 0
 */
 
 var gimme = function (inputArray) {
-    return inputArray.indexOf(inputArray.slice(0).sort(function(a, b){return a-b;})[1]);;
-  };
+    return inputArray.indexOf(inputArray.slice().sort((a, b) => a - b)[1]);
+};
