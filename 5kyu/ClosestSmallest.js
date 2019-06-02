@@ -78,25 +78,19 @@ closest should return  [[9, 0, 54], [9, 2, 162]] or ([9, 0, 54], [9, 2, 162])
 or [{9, 0, 54}, {9, 2, 162}] or ...
 */
 
-function closest(strng) {
-  if (strng === "") return [];
-
-  const details = strng
-    .split(" ")
-    .reduce((total, cur, i) => {
-      const weight = cur.split("").reduce((sum, el) => sum + +el, 0);
-      return [...total, [weight, i, Number(cur)]];
-    }, [])
-    .sort((a, b) => a[0] - b[0]);
-
-  const minDiff = details.reduce((min, e, i, arr) => {
+function  closest(strng) {
+  if (!strng) return [];
+  
+  const details = strng.split(' ').reduce((total, cur, i) => {
+    const weight = cur.split('').reduce((sum, el) => sum + + el, 0);
+    return [...total, [weight, i, Number(cur)]];
+  }, []).sort((a, b) => a[0] - b[0] || (a[1] - b[1]))
+  
+  const smallest = details.reduce((min, e, i, arr) => {
     if (i < 2) return [...min, e];
-    if (i === arr.length - 1 || min[1][0] - min[0][0] <= e[0] - arr[i - 1][0])
-      return min;
+    if (i === arr.length - 1 || min[1][0] - min[0][0] <= e[0] - arr[i - 1][0]) return min;
     return [arr[i - 1], e];
   }, []);
-
-  return minDiff[0][0] !== minDiff[1][0]
-    ? minDiff.sort((a, b) => a[0] - b[0])
-    : minDiff.sort((a, b) => a[1] - b[1]);
+  
+  return smallest.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
 }
